@@ -1,7 +1,10 @@
 document.addEventListener("DOMContentLoaded", init)
 
+let NUM = 0
+
 function init() {
     calculate()
+    gradient_c();
 }
 
 function calculate() {
@@ -24,3 +27,19 @@ function calculateRarityJam() {
     let maximum = 41
     let now = 3
 }
+
+function gradient_c(){
+    var refresh=10; // Refresh rate in milli seconds
+    mytime=setTimeout('gradient_ct()',refresh)
+    }
+    function gradient_ct() {
+        if(NUM < 360){
+            NUM++;
+        } else {
+            NUM = 0
+        }
+        
+        document.querySelector("input[type='submit']").style.background = "linear-gradient(" + NUM + "deg, #eec0c6 0%, #7ee8fa 100%)"   
+        gradient_c();
+     }
+    

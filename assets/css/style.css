@@ -27,7 +27,7 @@ header {
     text-align: center;
     width: 100%;
     padding: 1rem;
-    color: rgb(140,199,244);
+    color: rgb(120,200,244);
 }
 
 header>img {
@@ -42,14 +42,14 @@ main {
 
 aside {
     width: 23rem;
-    margin: 1rem;
     display: inline-block;
     position: absolute;
-    right: 0;
-    border-radius: 6%;
-    padding: 1%;
+    right: 1rem;
+    top: 8rem;
+    border-radius: 2rem;
+    padding: 1rem;
     border: 4px solid #18191a;
-    background: radial-gradient(#fff, rgb(140,199,244));
+    background: radial-gradient(#fff, rgb(120,200,250));
 }
 
 aside>img {
@@ -80,22 +80,26 @@ input[name="mint"] {
 }
 
 input[type="submit"] {
-    background-color: #66FF00;
+    background-color: #eec0c6;
+    background-image: linear-gradient(240deg, #eec0c6 0%, #7ee8fa 100%);  
     padding: 1rem 2rem;
     border: 4px solid #18191a;
     font-family: PressStart2P;
     margin-top: 1rem;
 }
 
+
+
+/*
 input[type="submit"]{
         border-radius: 5px;
-      background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
+      background: linear-gradient(124deg, #91d370, #91d370, #f2cd54);
       background-size: 1800% 1800%;
       
-      -webkit-animation: rainbow 18s ease infinite;
-      -z-animation: rainbow 18s ease infinite;
-      -o-animation: rainbow 18s ease infinite;
-        animation: rainbow 18s ease infinite;}
+      -webkit-animation: rainbow 10s ease infinite;
+      -z-animation: rainbow 10s ease infinite;
+      -o-animation: rainbow 10s ease infinite;
+        animation: rainbow 10s ease infinite;}
       
       @-webkit-keyframes rainbow {
           0%{background-position:0% 82%}
@@ -117,7 +121,7 @@ input[type="submit"]{
           50%{background-position:100% 19%}
           100%{background-position:0% 82%}
     }
-
+*/
 input[type="submit"]:hover {
     background: #5ad10b;
 }
