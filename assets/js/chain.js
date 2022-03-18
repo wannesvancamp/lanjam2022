@@ -8,8 +8,6 @@ window.addEventListener('load', async (event) => {
     await loadWeb3();
     setupFormEvents();
 
-    document.getElementById("walletModal").href = `https://explorer.energyweb.org/address/${web3.eth.defaultAccount}`;
-
     console.log('The page has fully loaded ^ㅂ^')
 });
 
@@ -536,11 +534,10 @@ async function loadWeb3() {
 function setupFormEvents() {
     document.getElementById("claimForm").addEventListener('submit', function (e) {
         e.preventDefault();
-        let claim = document.getElementById("nft-claim").value;
+        let claim = document.getElementById("mint").value;
         console.log(claim);
 
         clientMint(claim);
-        document.getElementById("nft-claim").value = "NOice ( ͡° ͜ʖ ͡°) ";
     });
 }
 
