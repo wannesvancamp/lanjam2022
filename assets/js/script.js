@@ -49,7 +49,7 @@ function backgroundMove(){
     time = setTimeout('backgroundMover()', refresh)
 }
 function backgroundMover(){
-    backgroundNum += 0.02
+    backgroundNum += 0.02   
     console.log(backgroundNum)
     document.querySelector("body").style.backgroundPosition = backgroundNum + "rem 0"
     backgroundMove();
