@@ -10,8 +10,9 @@
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="https://unpkg.com/web3@latest/dist/web3.min.js"></script>
-    <script src="assets/js/script.js"></script>
     <script src="assets/js/chain.js"></script>
+    <script src="assets/js/script.js"></script>
+
     <title>LAN Jam 2022 - mint</title>
 </head>
 
@@ -38,12 +39,32 @@
     <aside>
         <img src="assets/images/7.png" alt="nft">
         <p>LAN Jam 2022 #63</p>
-        <ol>
-            <li>Jam: Uncommon (18%)</li>
-            <li>Mold: No (73%)</li>
-            <li>Background: Rare (5%)</li>
-        </ol>
+        <div id="jam">
+            <span>Jam</span>
+            <span>Rainbow</span>
+            <span>Ultra Rare</span>
+            <span>5%</span>
+        </div>
+        <div id="mold">
+            <span>Mold</span>
+            <span>No</span>
+            <span>Common</span>
+            <span>70%</span>
+        </div>
+        <div id="bread">
+            <span>Bread</span>
+            <span>White</span>
+            <span>Common</span>
+            <span>33%</span>
+        </div>
+        <div>
+            <span>Background</span>
+            <span>Rainbow</span>
+            <span>Rare</span>
+            <span>33%</span>
+        </div>
     </aside>
+    <div id="output"></div>
     <footer>
         <span>MetaMask Wallet:</span>
         <div id="metaMaskId"></div>

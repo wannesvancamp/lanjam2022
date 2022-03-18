@@ -24,7 +24,7 @@ header {
     font-size: 2rem;
     padding: 1rem;
     line-height: 4rem;
-    color: rgb(120,200,244);
+    color: rgb(120, 200, 244);
 }
 
 header>img {
@@ -35,13 +35,14 @@ header>img {
 main {
     width: 60rem;
     display: inline-block;
+    margin-left: 4rem;
 }
 
-main h2{
+main h2 {
     font-size: 1.6rem;
 }
 
-main li{
+main ol {
     line-height: 1rem;
     list-style: decimal;
     margin-left: 4rem;
@@ -55,27 +56,34 @@ aside {
     top: 8rem;
     border-radius: 2rem;
     padding: 1rem;
-    border: 4px solid #18191a;
-    background: radial-gradient(#fff, rgb(120,200,250));
-}
-
-aside ol{
-    text-align: center;
-    padding-top: 1rem;  
+    background: radial-gradient(#fff, rgb(120, 200, 250));
+    display: flex;
+    border: 4px solid black;
+    flex-wrap: wrap;
 }
 
 aside>img {
     max-width: 100%;
     border-radius: 5%;
+    flex-grow: 2;
 }
 
 aside>p {
     text-align: center;
-    padding-top: 1rem;
+    padding-top: 1.5rem;
+    flex-grow: 2;
 }
 
-aside>ol>li {
-    font-size: 0.7rem;
+aside>div {
+    width: 50%;
+    margin-top: 1rem;
+}
+
+aside>div>span {
+    line-height: 1.5rem;
+    min-width: 100%;
+    display: block;
+    text-align: center;
 }
 
 input[name="mint"] {
@@ -92,12 +100,11 @@ input[name="mint"] {
 
 input[type="submit"] {
     background-color: #eec0c6;
-    background-image: linear-gradient(240deg, #eec0c6 0%, #7ee8fa 100%);  
+    background-image: linear-gradient(240deg, #eec0c6 0%, #7ee8fa 100%);
     padding: 1rem 2rem;
     border: 4px solid #18191a;
     font-family: PressStart2P;
     margin-top: 1rem;
-    
 }
 
 input[type="submit"]:hover {
@@ -110,7 +117,6 @@ input[type="submit"]:active {
 
 section,
 h2 {
-    margin-left: 3rem;
     margin-right: 3rem;
 }
 
@@ -141,26 +147,26 @@ footer>.metaMaskId {
 }
 
 @media (max-width: 500px) {
-    body{
+    body {
         background-size: auto;
         background-position: 0% 30%;
     }
-    aside{
+    aside {
         display: none;
     }
-    main{
+    main {
         width: 100%;
     }
-    input{
+    input {
         max-width: 80%;
     }
-    header>img{
+    header>img {
         display: none;
     }
-    header{
+    header {
         width: auto;
     }
-    header>h1{
+    header>h1 {
         font-size: 1.4rem;
         line-height: 2rem;
     }

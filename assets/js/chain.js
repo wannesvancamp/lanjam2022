@@ -4,7 +4,7 @@ let contract;
 let contractAddress = "0xce096f834FFC66970245aCa6172b8A2EC4895E73";
 let ipfsAddress;
 
-window.addEventListener('load', async (event) => {
+window.addEventListener('load', async(event) => {
     await loadWeb3();
     setupFormEvents();
 
@@ -12,21 +12,21 @@ window.addEventListener('load', async (event) => {
 });
 
 async function retrieveTransferEvents() {
-    
-        let succesArr = await contract.getPastEvents('TransferSingle', { fromBlock: 0, toBlock: 'latest' });
-        
-        succesArr.forEach(entries => {
-            if(entries.returnValues.to == web3.eth.defaultAccount){
-                let tempId = (entries.returnValues.id);
-                let ipfsLink = ipfsAddress + "/" + leftFillNum(tempId);
 
-                fetch(ipfsLink)
-                .then((res) => res.json ())
+    let succesArr = await contract.getPastEvents('TransferSingle', { fromBlock: 0, toBlock: 'latest' });
+
+    succesArr.forEach(entries => {
+        if (entries.returnValues.to == web3.eth.defaultAccount) {
+            let tempId = (entries.returnValues.id);
+            let ipfsLink = ipfsAddress + "/" + leftFillNum(tempId);
+            console.error("https://ipfs.io/ipfs/" + ipfsAddress.substr(7, 46) + "/" + leftFillNum(tempId))
+            fetch("https://ipfs.io/" + ipfsAddress.substr(7, 46) + "/" + leftFillNum(tempId))
+                .then((res) => res.json())
                 .then((data) => {
-                      let output ="";
-                      console.log(data.image);
+                    let output = "";
+                    console.log(data.image);
 
-                      output += `
+                    output += `
 
                       <div class="flex-item-db">
                       <a href=${ipfsLink}> <img src="${data.image}" </a> 
@@ -36,28 +36,26 @@ async function retrieveTransferEvents() {
                       
                       
                       `
-                      
 
-                      document.getElementById('output').innerHTML = output;
 
-                }).catch(function (err) {
+                    document.getElementById('output').innerHTML = output;
+
+                }).catch(function(err) {
                     console.log(err);
                 });
-            }
-        });
+        }
+    });
 }
 
 async function loadContract() {
-    let abi = [
-        {
+    let abi = [{
             "inputs": [],
             "stateMutability": "nonpayable",
             "type": "constructor"
         },
         {
             "anonymous": false,
-            "inputs": [
-                {
+            "inputs": [{
                     "indexed": true,
                     "internalType": "address",
                     "name": "account",
@@ -81,8 +79,7 @@ async function loadContract() {
         },
         {
             "anonymous": false,
-            "inputs": [
-                {
+            "inputs": [{
                     "indexed": true,
                     "internalType": "address",
                     "name": "previousOwner",
@@ -100,8 +97,7 @@ async function loadContract() {
         },
         {
             "anonymous": false,
-            "inputs": [
-                {
+            "inputs": [{
                     "indexed": true,
                     "internalType": "address",
                     "name": "operator",
@@ -137,8 +133,7 @@ async function loadContract() {
         },
         {
             "anonymous": false,
-            "inputs": [
-                {
+            "inputs": [{
                     "indexed": true,
                     "internalType": "address",
                     "name": "operator",
@@ -174,8 +169,7 @@ async function loadContract() {
         },
         {
             "anonymous": false,
-            "inputs": [
-                {
+            "inputs": [{
                     "indexed": false,
                     "internalType": "string",
                     "name": "value",
@@ -192,21 +186,18 @@ async function loadContract() {
             "type": "event"
         },
         {
-            "inputs": [
-                {
-                    "internalType": "bytes32[]",
-                    "name": "hashes",
-                    "type": "bytes32[]"
-                }
-            ],
+            "inputs": [{
+                "internalType": "bytes32[]",
+                "name": "hashes",
+                "type": "bytes32[]"
+            }],
             "name": "addClaimableCodeHashes",
             "outputs": [],
             "stateMutability": "nonpayable",
             "type": "function"
         },
         {
-            "inputs": [
-                {
+            "inputs": [{
                     "internalType": "address",
                     "name": "account",
                     "type": "address"
@@ -218,19 +209,16 @@ async function loadContract() {
                 }
             ],
             "name": "balanceOf",
-            "outputs": [
-                {
-                    "internalType": "uint256",
-                    "name": "",
-                    "type": "uint256"
-                }
-            ],
+            "outputs": [{
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }],
             "stateMutability": "view",
             "type": "function"
         },
         {
-            "inputs": [
-                {
+            "inputs": [{
                     "internalType": "address[]",
                     "name": "accounts",
                     "type": "address[]"
@@ -242,32 +230,27 @@ async function loadContract() {
                 }
             ],
             "name": "balanceOfBatch",
-            "outputs": [
-                {
-                    "internalType": "uint256[]",
-                    "name": "",
-                    "type": "uint256[]"
-                }
-            ],
+            "outputs": [{
+                "internalType": "uint256[]",
+                "name": "",
+                "type": "uint256[]"
+            }],
             "stateMutability": "view",
             "type": "function"
         },
         {
             "inputs": [],
             "name": "contractURI",
-            "outputs": [
-                {
-                    "internalType": "string",
-                    "name": "",
-                    "type": "string"
-                }
-            ],
+            "outputs": [{
+                "internalType": "string",
+                "name": "",
+                "type": "string"
+            }],
             "stateMutability": "pure",
             "type": "function"
         },
         {
-            "inputs": [
-                {
+            "inputs": [{
                     "internalType": "address",
                     "name": "account",
                     "type": "address"
@@ -279,24 +262,20 @@ async function loadContract() {
                 }
             ],
             "name": "isApprovedForAll",
-            "outputs": [
-                {
-                    "internalType": "bool",
-                    "name": "",
-                    "type": "bool"
-                }
-            ],
+            "outputs": [{
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+            }],
             "stateMutability": "view",
             "type": "function"
         },
         {
-            "inputs": [
-                {
-                    "internalType": "string",
-                    "name": "code",
-                    "type": "string"
-                }
-            ],
+            "inputs": [{
+                "internalType": "string",
+                "name": "code",
+                "type": "string"
+            }],
             "name": "mint",
             "outputs": [],
             "stateMutability": "nonpayable",
@@ -305,26 +284,22 @@ async function loadContract() {
         {
             "inputs": [],
             "name": "nextId",
-            "outputs": [
-                {
-                    "internalType": "uint256",
-                    "name": "",
-                    "type": "uint256"
-                }
-            ],
+            "outputs": [{
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }],
             "stateMutability": "view",
             "type": "function"
         },
         {
             "inputs": [],
             "name": "owner",
-            "outputs": [
-                {
-                    "internalType": "address",
-                    "name": "",
-                    "type": "address"
-                }
-            ],
+            "outputs": [{
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            }],
             "stateMutability": "view",
             "type": "function"
         },
@@ -336,8 +311,7 @@ async function loadContract() {
             "type": "function"
         },
         {
-            "inputs": [
-                {
+            "inputs": [{
                     "internalType": "address",
                     "name": "from",
                     "type": "address"
@@ -369,8 +343,7 @@ async function loadContract() {
             "type": "function"
         },
         {
-            "inputs": [
-                {
+            "inputs": [{
                     "internalType": "address",
                     "name": "from",
                     "type": "address"
@@ -402,8 +375,7 @@ async function loadContract() {
             "type": "function"
         },
         {
-            "inputs": [
-                {
+            "inputs": [{
                     "internalType": "address",
                     "name": "operator",
                     "type": "address"
@@ -420,67 +392,54 @@ async function loadContract() {
             "type": "function"
         },
         {
-            "inputs": [
-                {
-                    "internalType": "bytes4",
-                    "name": "interfaceId",
-                    "type": "bytes4"
-                }
-            ],
+            "inputs": [{
+                "internalType": "bytes4",
+                "name": "interfaceId",
+                "type": "bytes4"
+            }],
             "name": "supportsInterface",
-            "outputs": [
-                {
-                    "internalType": "bool",
-                    "name": "",
-                    "type": "bool"
-                }
-            ],
+            "outputs": [{
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+            }],
             "stateMutability": "view",
             "type": "function"
         },
         {
-            "inputs": [
-                {
-                    "internalType": "address",
-                    "name": "newOwner",
-                    "type": "address"
-                }
-            ],
+            "inputs": [{
+                "internalType": "address",
+                "name": "newOwner",
+                "type": "address"
+            }],
             "name": "transferOwnership",
             "outputs": [],
             "stateMutability": "nonpayable",
             "type": "function"
         },
         {
-            "inputs": [
-                {
-                    "internalType": "uint256",
-                    "name": "",
-                    "type": "uint256"
-                }
-            ],
+            "inputs": [{
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }],
             "name": "uri",
-            "outputs": [
-                {
-                    "internalType": "string",
-                    "name": "",
-                    "type": "string"
-                }
-            ],
+            "outputs": [{
+                "internalType": "string",
+                "name": "",
+                "type": "string"
+            }],
             "stateMutability": "view",
             "type": "function"
         },
         {
-            "inputs": [
-                {
-                    "internalType": "bytes32",
-                    "name": "",
-                    "type": "bytes32"
-                }
-            ],
+            "inputs": [{
+                "internalType": "bytes32",
+                "name": "",
+                "type": "bytes32"
+            }],
             "name": "vouchers",
-            "outputs": [
-                {
+            "outputs": [{
                     "internalType": "bool",
                     "name": "exists",
                     "type": "bool"
@@ -523,16 +482,16 @@ async function loadWeb3() {
     web3.eth.defaultAccount = accounts[0];
     console.log(`Your account is ${web3.eth.defaultAccount}`);
     let acc = web3.eth.defaultAccount;
-    
+
     document.getElementById("metaMaskId").innerHTML = `${acc}`;
-   
+
     await addVoltaNetwork();
 
     await loadContract();
 }
 
 function setupFormEvents() {
-    document.getElementById("claimForm").addEventListener('submit', function (e) {
+    document.getElementById("claimForm").addEventListener('submit', function(e) {
         e.preventDefault();
         let claim = document.getElementById("mint").value;
         console.log(claim);
@@ -582,10 +541,10 @@ async function addEnergyWebNetwork() {
 
                     }],
                 });
-		await ethereum.request({
-            		method: 'wallet_switchEthereumChain',
-            		params: [{ chainId: '0xf6' }],
-        	});
+                await ethereum.request({
+                    method: 'wallet_switchEthereumChain',
+                    params: [{ chainId: '0xf6' }],
+                });
             } catch (addError) {
                 console.log('Did not add network');
             }
@@ -633,20 +592,20 @@ function output(array) {
 }
 
 
-function showShortedAddr(account){
-let longAddr = account;
-let firstStr = longAddr.substring(0,5);
-let middleStr = "...";
-let lastStr = longAddr.substring(37,42);
-return firstStr.concat(middleStr, lastStr)
+function showShortedAddr(account) {
+    let longAddr = account;
+    let firstStr = longAddr.substring(0, 5);
+    let middleStr = "...";
+    let lastStr = longAddr.substring(37, 42);
+    return firstStr.concat(middleStr, lastStr)
 }
 
 
-async function removeMintingAbility(){
+async function removeMintingAbility() {
 
     let succesArr = await contract.getPastEvents('TransferSingle', { fromBlock: 0, toBlock: 'latest' });
     succesArr.forEach(entries => {
-        if(entries.returnValues.to == web3.eth.defaultAccount){
+        if (entries.returnValues.to == web3.eth.defaultAccount) {
             document.getElementById("contentMint").style.display = "none";
         }
 

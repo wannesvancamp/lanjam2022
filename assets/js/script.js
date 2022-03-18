@@ -2,23 +2,31 @@ document.addEventListener("DOMContentLoaded", init)
 
 let NUM = 0
 let backgroundNum = 0
+
+//TODO ipfsAddress.substr(7,46)
+
+
 function init() {
     ifSafari()
     calculate()
+    something()
+        /*     if(window.screen.width > 500){
+                backgroundMove()
+                gradient_c();
+            } */
 
-    if(window.screen.width > 500){
-        backgroundMove()
-        gradient_c();
-    }
-    
 }
 
-function ifSafari(){
-    let check = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })
-    (!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
-    if (check){
+function ifSafari() {
+    let check = /constructor/i.test(window.HTMLElement) || (function(p) { return p.toString() === "[object SafariRemoteNotification]"; })
+        (!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
+    if (check) {
         document.querySelector('h1').style.fontSize = "1.9rem"
     }
+}
+
+async function something() {
+    console.error(ipfsAddress)
 }
 
 function calculate() {
@@ -41,6 +49,7 @@ function gradient_c() {
     let refresh = 10; // Refresh rate in milli seconds
     mytime = setTimeout('gradient_ct()', refresh)
 }
+
 function gradient_ct() {
     if (NUM < 360) {
         NUM++;
@@ -56,9 +65,10 @@ function backgroundMove() {
     let refresh = 50
     time = setTimeout('backgroundMover()', refresh)
 }
+
 function backgroundMover() {
     backgroundNum += 0.02
-    //console.log(backgroundNum)
+        //console.log(backgroundNum)
     document.querySelector("body").style.backgroundPosition = backgroundNum + "rem 0"
     backgroundMove();
 }
