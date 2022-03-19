@@ -7,7 +7,7 @@ let backgroundNum = 0
 
 
 function init() {
-    ifSafari()
+    //ifSafari()
     calculate()
     something()
         /*     if(window.screen.width > 500){

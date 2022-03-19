@@ -3,6 +3,7 @@
 let contract;
 let contractAddress = "0xce096f834FFC66970245aCa6172b8A2EC4895E73";
 let ipfsAddress;
+let rarities = {};
 
 window.addEventListener('load', async(event) => {
     await loadWeb3();
@@ -10,6 +11,26 @@ window.addEventListener('load', async(event) => {
 
     console.log('The page has fully loaded ^ㅂ^')
 });
+
+function tempFunction(data) {
+    const perLayer = {
+        "ultraRare": 1,
+        "rare": 2,
+        "uncommon": 3,
+        "common": 5
+    }
+    const totalRarities = {
+        "bread": 15,
+        "mold": 7,
+        "jam": 20,
+        "background": 41
+    }
+    Object.keys(data.properties.rarity).forEach(element => {
+        rarities[element] = (perLayer[data.properties.rarity[element]] / totalRarities[element] * 100)
+    });
+}
+
+
 
 async function retrieveTransferEvents() {
 
@@ -19,26 +40,45 @@ async function retrieveTransferEvents() {
         if (entries.returnValues.to == web3.eth.defaultAccount) {
             let tempId = (entries.returnValues.id);
             let ipfsLink = ipfsAddress + "/" + leftFillNum(tempId);
-            console.error("https://ipfs.io/ipfs/" + ipfsAddress.substr(7, 46) + "/" + leftFillNum(tempId))
-            fetch("https://ipfs.io/" + ipfsAddress.substr(7, 46) + "/" + leftFillNum(tempId))
+            //console.warn("https://ipfs.io/ipfs/" + ipfsAddress.substr(7, 46) + "/" + leftFillNum(tempId))
+            fetch('https://gateway.pinata.cloud/ipfs/QmbthspimWpwBnTncnS7BmzZCsZc6y3stxDTKBE3ZfnLZ5')
                 .then((res) => res.json())
                 .then((data) => {
                     let output = "";
-                    console.log(data.image);
+                    tempFunction(data);
+                    // TODO change img from <img src=${"https://ipfs.io/ipfs/" + data.image.substr(7)}> to <img src=${data.image}>
+                    output =
+                        `
+                    <img src=${"https://ipfs.io/ipfs/" + data.image.substr(7)}>
+                    <p>${data.name}</p>
+                    <div>
+                        <span>${Object.keys(data.properties)[3]}</span>
+                        <span>${(data.properties.jam).split("_")[0]}</span>
+                        <span>${(data.properties.rarity.jam)}</span>
+                        <span>${Math.round(rarities["jam"])}%</span>
+                    </div>
+                    <div>
+                        <span>${Object.keys(data.properties)[2]}</span>
+                        <span>${(data.properties.mold)}</span>
+                        <span>${(data.properties.rarity.mold)}</span>
+                        <span>${Math.round(rarities["mold"])}%</span>
+                    </div>
+                    <div>
+                        <span>${Object.keys(data.properties)[1]}</span>
+                        <span>${(data.properties.bread).split("_")[0]}</span>
+                        <span>${(data.properties.rarity.bread)}</span>
+                        <span>${Math.round(rarities["bread"])}%</span>
+                    </div>
+                    <div>
+                        <span>${Object.keys(data.properties)[0]}</span>
+                        <span>${(data.properties.background).split("_")[1]}</span>
+                        <span>${(data.properties.rarity.background)}</span>
+                        <span>${Math.round(rarities["background"])}%</span>
+                        </div>
+                    
+                    `
 
-                    output += `
-
-                      <div class="flex-item-db">
-                      <a href=${ipfsLink}> <img src="${data.image}" </a> 
-                      <h2>${data.name} </h2>
-                      <p>${data.description} </p>
-                      
-                      
-                      
-                      `
-
-
-                    document.getElementById('output').innerHTML = output;
+                    document.querySelector('aside').innerHTML = output;
 
                 }).catch(function(err) {
                     console.log(err);
