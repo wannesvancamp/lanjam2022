@@ -47,35 +47,38 @@ async function retrieveTransferEvents() {
                     let output = "";
                     tempFunction(data);
                     // TODO change img from <img src=${"https://ipfs.io/ipfs/" + data.image.substr(7)}> to <img src=${data.image}>
+                    document.querySelector("aside").style.display = "block"
+                    console.log(data)
                     output =
                         `
                     <img src=${"https://ipfs.io/ipfs/" + data.image.substr(7)}>
                     <p>${data.name}</p>
-                    <div>
-                        <span>${Object.keys(data.properties)[3]}</span>
-                        <span>${(data.properties.jam).split("_")[0]}</span>
-                        <span>${(data.properties.rarity.jam)}</span>
-                        <span>${Math.round(rarities["jam"])}%</span>
-                    </div>
-                    <div>
-                        <span>${Object.keys(data.properties)[2]}</span>
-                        <span>${(data.properties.mold)}</span>
-                        <span>${(data.properties.rarity.mold)}</span>
-                        <span>${Math.round(rarities["mold"])}%</span>
-                    </div>
-                    <div>
-                        <span>${Object.keys(data.properties)[1]}</span>
-                        <span>${(data.properties.bread).split("_")[0]}</span>
-                        <span>${(data.properties.rarity.bread)}</span>
-                        <span>${Math.round(rarities["bread"])}%</span>
-                    </div>
-                    <div>
-                        <span>${Object.keys(data.properties)[0]}</span>
-                        <span>${(data.properties.background).split("_")[1]}</span>
-                        <span>${(data.properties.rarity.background)}</span>
-                        <span>${Math.round(rarities["background"])}%</span>
+                    <div class="container">
+                        <div>
+                            <span>${Object.keys(data.properties)[3]}</span>
+                            <span>${(data.properties.jam).split("_")[0]}</span>
+                            <span>${(data.properties.rarity.jam)}</span>
+                            <span>${Math.round(rarities["jam"])}%</span>
                         </div>
-                    
+                        <div>
+                            <span>${Object.keys(data.properties)[2]}</span>
+                            <span>${(data.properties.mold)}</span>
+                            <span>${(data.properties.rarity.mold)}</span>
+                            <span>${Math.round(rarities["mold"])}%</span>
+                        </div>
+                        <div>
+                            <span>${Object.keys(data.properties)[1]}</span>
+                            <span>${(data.properties.bread).split("_")[0]}</span>
+                            <span>${(data.properties.rarity.bread)}</span>
+                            <span>${Math.round(rarities["bread"])}%</span>
+                        </div>
+                        <div>
+                            <span>${Object.keys(data.properties)[0]}</span>
+                            <span>${(data.properties.background).split("_")[1]}</span>
+                            <span>${(data.properties.rarity.background)}</span>
+                            <span>${Math.round(rarities["background"])}%</span>
+                            </div>
+                    </div>
                     `
 
                     document.querySelector('aside').innerHTML = output;
