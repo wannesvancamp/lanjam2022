@@ -1,0 +1,43 @@
+body{
+    overflow-y: auto !important;
+    background-attachment: fixed;
+}
+main{
+    width: 100%;
+    flex-wrap: wrap;
+    display: flex;
+    margin: 0 !important;
+    align-items: center;
+    justify-content: center;
+    padding-top: 7rem;
+}
+
+main img{
+    height: 20rem;
+    border-radius: 2rem;
+    margin: 1rem;
+}
+
+header{
+    position: fixed !important;
+}
+
+#return{
+    position: fixed;
+    bottom: 2rem;
+    left: 3rem;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: #18191a;
+    color: rgb(120, 200, 244);
+    cursor: pointer;
+    padding: 2rem;
+    border-radius: 10px;
+    font-size: 18px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+#return:hover{
+    background-color: rgb(120, 200, 244);
+    color: #18191a;
+}

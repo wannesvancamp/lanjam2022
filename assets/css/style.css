@@ -13,6 +13,7 @@ body {
     background-size: auto;
     background-position: left top;
     color: #18191a;
+    background-attachment: fixed;
 }
 
 header {
@@ -128,10 +129,11 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
     background: #5ad10b;
+    cursor:pointer;
 }
 
 input[type="submit"]:active {
-    background: #48a10d
+    background: #48a10d;
 }
 
 section,
@@ -189,4 +191,17 @@ footer>.metaMaskId {
         font-size: 1.4rem;
         line-height: 2rem;
     }
+}
+#EWTMessage{
+    text-align: right;
+}
+#EWTGetter{
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
+    
+}
+#EWTGetter:active{
+    color: red;
+
 }

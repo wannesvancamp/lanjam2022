@@ -40,6 +40,8 @@ async function retrieveTransferEvents() {
         if (entries.returnValues.to == web3.eth.defaultAccount) {
             let tempId = (entries.returnValues.id);
             let ipfsLink = ipfsAddress + "/" + leftFillNum(tempId);
+            console.log(ipfsLink)
+            sessionStorage.setItem("ipfsAddress", ipfsAddress)
             //console.warn("https://ipfs.io/ipfs/" + ipfsAddress.substr(7, 46) + "/" + leftFillNum(tempId))
             fetch('https://gateway.pinata.cloud/ipfs/QmbthspimWpwBnTncnS7BmzZCsZc6y3stxDTKBE3ZfnLZ5')
                 .then((res) => res.json())
@@ -517,7 +519,7 @@ async function loadWeb3() {
         web3 = new Web3(window.ethereum);
         await window.ethereum.enable();
     } else {
-        alert("MetaMask not found!");
+        document.querySelector("#steps").innerHTML = `<li style="color:red">You do not have MetaMask, please add MetaMask <a href="https://metamask.io/download/" target="_new">Here</a></li>` + document.querySelector("#steps").innerHTML;
         return;
     }
 
@@ -657,9 +659,9 @@ async function removeMintingAbility() {
 }
 
 function getEWT() {
-    let getEWTSpan = document.getElementById("getEWT");
+    let getEWTDiv = document.querySelector("#EWTMessage");
+    getEWTDiv.innerHTML = `Getting EWT for ${web3.eth.defaultAccount}`;
 
-    getEWTSpan.innerHTML = `Getting EWT for ${web3.eth.defaultAccount}`;
 
     fetch(`http://209.97.135.51:3000/faucet/${web3.eth.defaultAccount}`)
         .then((res) => res.json())
@@ -667,4 +669,12 @@ function getEWT() {
             console.log("Request complete! response:", res);
             getEWTSpan.innerHTML = `EWT is on its way for ${web3.eth.defaultAccount}: <a href="https://explorer.energyweb.org/tx/${res.transaction}" target="_blank">Check status here</a>`;
         });
+
+    setTimeout(function(){
+        getEWTDiv.innerHTML = "You have been given some EWT, or already have some"
+    }, 5000)
+    setTimeout(function(){
+        getEWTDiv.innerHTML = ""
+    }, 10000)
+    
 }
