@@ -40,17 +40,13 @@ async function retrieveTransferEvents() {
         if (entries.returnValues.to == web3.eth.defaultAccount) {
             let tempId = (entries.returnValues.id);
             let ipfsLink = ipfsAddress + "/" + leftFillNum(tempId);
-            console.log(ipfsLink)
             sessionStorage.setItem("ipfsAddress", ipfsAddress)
-            //console.warn("https://ipfs.io/ipfs/" + ipfsAddress.substr(7, 46) + "/" + leftFillNum(tempId))
             fetch('https://gateway.pinata.cloud/ipfs/QmbthspimWpwBnTncnS7BmzZCsZc6y3stxDTKBE3ZfnLZ5')
                 .then((res) => res.json())
                 .then((data) => {
                     let output = "";
                     tempFunction(data);
-                    // TODO change img from <img src=${"https://ipfs.io/ipfs/" + data.image.substr(7)}> to <img src=${data.image}>
                     document.querySelector("aside").style.display = "block"
-                    console.log(data)
                     output =
                         `
                     <img src=${"https://ipfs.io/ipfs/" + data.image.substr(7)}>
