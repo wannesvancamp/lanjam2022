@@ -1,6 +1,7 @@
 body{
     overflow-y: auto !important;
     background-attachment: fixed;
+    background-size: cover;
 }
 main{
     width: 100%;

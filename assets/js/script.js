@@ -8,7 +8,6 @@ let backgroundNum = 0
 
 function init() {
     backgroundMove()
-
     if (!document.URL.includes("collection.html")){
         gradient_ct()
     }

@@ -9,6 +9,7 @@ body {
     background-size: cover;
     font-family: PressStart2P, Verdana, Geneva, Tahoma, sans-serif;
     padding: 0;
+    background-size: cover !important;
     margin: 0;
     background-size: auto;
     background-position: left top;
@@ -128,12 +129,12 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-    background: #5ad10b;
+    background: #5ad10b !important;
     cursor:pointer;
 }
 
 input[type="submit"]:active {
-    background: #48a10d;
+    background: #48a10d !important;
 }
 
 section,

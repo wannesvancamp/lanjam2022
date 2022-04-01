@@ -24,9 +24,9 @@ function toHex(number){
 }
 
 async function loadImages(){
-    for(let i = 1;i<51;i++){
-            await delay(11);
-            fetch('https://gateway.pinata.cloud/ipfs/QmaZyDBgAsxjK51dU4eyY7LZYCah8qGRBxo6FjwhD3HBw8/jsons/' + extraNumbers(toHex(i)))
+    for(let i = 1;i<101;i++){
+            await delay(20);
+            fetch('https://gateway.pinata.cloud/ipfs/QmdMgy9N1qCMmbYrQJQyYvyuC1TqiuATMbPgBS3wRmMVuX/' + extraNumbers(toHex(i)))
             .then((res) => res.json())
             .then((data) => {  
                 let imgLink = "https://ipfs.io/ipfs/" + data.image.substr(7);

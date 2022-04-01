@@ -1,15 +1,15 @@
 'use strict'
 
 let contract;
-let contractAddress = "0xce096f834FFC66970245aCa6172b8A2EC4895E73";
+let contractAddress = "0x7e4ed84efa925af6B1357187447748A1BE837eCa";
 let ipfsAddress;
 let rarities = {};
 
 window.addEventListener('load', async(event) => {
     await loadWeb3();
     setupFormEvents();
-
     console.log('The page has fully loaded ^ㅂ^')
+    document.querySelector("#EWTGetter").addEventListener("click", function(){getEWT()})
 });
 
 function tempFunction(data) {
@@ -526,7 +526,7 @@ async function loadWeb3() {
 
     document.getElementById("metaMaskId").innerHTML = `${acc}`;
 
-    await addVoltaNetwork();
+    await addEnergyWebNetwork();
 
     await loadContract();
 }
@@ -655,22 +655,19 @@ async function removeMintingAbility() {
 }
 
 function getEWT() {
-    let getEWTDiv = document.querySelector("#EWTMessage");
-    getEWTDiv.innerHTML = `Getting EWT for ${web3.eth.defaultAccount}`;
-
-
-    fetch(`http://209.97.135.51:3000/faucet/${web3.eth.defaultAccount}`)
-        .then((res) => res.json())
-        .then(res => {
-            console.log("Request complete! response:", res);
-            getEWTSpan.innerHTML = `EWT is on its way for ${web3.eth.defaultAccount}: <a href="https://explorer.energyweb.org/tx/${res.transaction}" target="_blank">Check status here</a>`;
-        });
-
+    let getEWTDiv = document.getElementById("EWTMessage");
+    
+     getEWTDiv.innerHTML = `Getting EWT for ${web3.eth.defaultAccount}`;
+     fetch(`http://167.99.222.120:3000/faucet/${web3.eth.defaultAccount}`)
+    .then((res) => res.json())
+    .then(res => {
+    console.log("Request complete! response:", res);
     setTimeout(function(){
-        getEWTDiv.innerHTML = "You have been given some EWT, or already have some"
-    }, 5000)
+        getEWTDiv.innerHTML = `EWT is on its way: <a href="https://explorer.energyweb.org/tx/${res.transaction}" target="_blank">Check status here</a>`;
+    }, 2000)
+    });
     setTimeout(function(){
         getEWTDiv.innerHTML = ""
-    }, 10000)
-    
-}
+    }, 20000)
+
+    }
