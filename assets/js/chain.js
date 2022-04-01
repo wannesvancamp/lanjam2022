@@ -538,9 +538,11 @@ function leftFillNum(num) {
 function clientMint(code) {
     contract.methods.mint(code)
         .send({ from: web3.eth.defaultAccount })
-        .then(succes => console.log(succes))
+        .then(succes => {
+            console.log(succes);
+            retrieveTransferEvents();
+        })
         .catch(e => console.log(e));
-
 }
 
 async function addEnergyWebNetwork() {
