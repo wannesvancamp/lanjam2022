@@ -280,17 +280,6 @@ async function loadContract() {
             "type": "function"
         },
         {
-            "inputs": [],
-            "name": "contractURI",
-            "outputs": [{
-                "internalType": "string",
-                "name": "",
-                "type": "string"
-            }],
-            "stateMutability": "pure",
-            "type": "function"
-        },
-        {
             "inputs": [{
                     "internalType": "address",
                     "name": "account",
@@ -499,7 +488,7 @@ async function loadContract() {
     contract = new web3.eth.Contract(abi, contractAddress);
     console.log(contract.methods);
 
-    ipfsAddress = (await contract.methods.contractURI().call()).replace("gateway.pinata.cloud", "ipfs.io");
+    ipfsAddress = (await contract.methods.uri(0).call()).replace("ipfs://", "https://ipfs.io/ipfs/");
 
     retrieveTransferEvents();
 }
