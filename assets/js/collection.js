@@ -13,6 +13,6 @@ function padHex(num){
 
 async function loadImages(){
     for(let i = 1;i<101;i++){
-        document.querySelector("main").innerHTML += `<img src="https://ipfs.io/ipfs/QmZXrFU6w4uY2hwu2T7hcqZDaPQ6QqmT6uUhKCKJcaF4aG/${padHex(i)}.png" alt="nft" loading="lazy">`;
+        document.querySelector("main").innerHTML += `<img src="https://ipfs.io/ipfs/QmZXrFU6w4uY2hwu2T7hcqZDaPQ6QqmT6uUhKCKJcaF4aG/${padHex(i)}.png" alt="nft">`;
     }
 }
