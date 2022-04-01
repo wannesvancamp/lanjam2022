@@ -39,9 +39,10 @@ async function retrieveTransferEvents() {
     succesArr.forEach(entries => {
         if (entries.returnValues.to == web3.eth.defaultAccount) {
             let tempId = (entries.returnValues.id);
-            let ipfsLink = ipfsAddress + "/" + leftFillNum(tempId);
-            sessionStorage.setItem("ipfsAddress", ipfsAddress)
-            fetch('https://gateway.pinata.cloud/ipfs/QmbthspimWpwBnTncnS7BmzZCsZc6y3stxDTKBE3ZfnLZ5')
+            let ipfsLink = ipfsAddress.replace("{id}", leftFillNum(tempId));
+            console.log(ipfsLink);
+            sessionStorage.setItem("ipfsAddress", ipfsLink)
+            fetch(ipfsLink)
                 .then((res) => res.json())
                 .then((data) => {
                     let output = "";
@@ -49,7 +50,7 @@ async function retrieveTransferEvents() {
                     document.querySelector("aside").style.display = "block"
                     output =
                         `
-                    <img src=${"https://ipfs.io/ipfs/" + data.image.substr(7)}>
+                    <img src=${data.image.replace("ipfs://", "https://ipfs.io/ipfs/")}>
                     <p>${data.name}</p>
                     <div class="container">
                         <div>
@@ -531,11 +532,7 @@ function setupFormEvents() {
 }
 
 function leftFillNum(num) {
-    let format = ".json";
-    let paddedNum = num.toString().padStart(64, 0);
-    let metadataJSON = paddedNum.concat(format);
-    console.log(metadataJSON);
-    return metadataJSON;
+    return num.toString(16).padStart(64, 0);
 }
 
 function clientMint(code) {
